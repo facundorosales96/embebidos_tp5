@@ -30,6 +30,7 @@ SPDX-License-Identifier: MIT
 /* === Headers files inclusions =============================================================== */
 
 #include "calculadora.h"
+#include <stdio.h>
 
 /* === Macros definitions ====================================================================== */
 
@@ -39,6 +40,10 @@ SPDX-License-Identifier: MIT
 
 /* === Private function declarations =========================================================== */
 
+int suma(int a, int b);
+int resta(int a, int b);
+int producto(int a, int b);
+
 /* === Public variable definitions ============================================================= */
 
 /* === Private variable definitions ============================================================ */
@@ -46,6 +51,38 @@ SPDX-License-Identifier: MIT
 /* === Private function implementation ========================================================= */
 
 /* === Public function implementation ========================================================== */
+
+int suma(int a, int b) {
+    return (a + b);
+}
+int resta(int a, int b) {
+    return (a - b);
+}
+int producto(int a, int b) {
+    return (a * b);
+}
+
+int main(void) {
+
+    int resultado;
+
+    calculadora_t calculadora = CrearCalculadora();
+
+    AgregarOperacion(calculadora, '+', suma);
+    AgregarOperacion(calculadora, '-', resta);
+    AgregarOperacion(calculadora, '*', producto);
+
+    printf("==== Dados los numeros: 5 y 3 =====\r\n");
+
+    resultado = Calcular(calculadora, "5+3");
+    printf("La suma es %i\r\n", resultado);
+
+    resultado = Calcular(calculadora, "5-3");
+    printf("La resta es %i\r\n", resultado);
+
+    resultado = Calcular(calculadora, "5*3");
+    printf("El producto es %i\r\n", resultado);
+}
 
 /* === End of documentation ==================================================================== */
 

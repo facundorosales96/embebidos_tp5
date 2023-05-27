@@ -31,6 +31,8 @@ SPDX-License-Identifier: MIT
  ** @{ */
 
 /* === Headers files inclusions ================================================================ */
+#include <stdbool.h>
+#include <stdint.h>
 
 /* === Cabecera C++ ============================================================================ */
 
@@ -42,9 +44,20 @@ extern "C" {
 
 /* === Public data type declarations =========================================================== */
 
+typedef struct calculadora_s * calculadora_t;
+typedef struct operacion_s * operacion_t;
+typedef int (*funciont_t)(int, int);
+
 /* === Public variable declarations ============================================================ */
 
 /* === Public function declarations ============================================================ */
+
+calculadora_t CrearCalculadora(void);
+operacion_t BuscarOperacion(calculadora_t calculadora, char operador);
+
+bool AgregarOperacion(calculadora_t calculadora, char operador, funciont_t funcion);
+
+int Calcular(calculadora_t calculadora, char * cadena);
 
 /* === End of documentation ==================================================================== */
 
@@ -54,4 +67,4 @@ extern "C" {
 
 /** @} End of module definition for doxygen */
 
-#endif /* TEMPLATE_H */
+#endif /* CALCULADORA_H */
