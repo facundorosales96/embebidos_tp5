@@ -37,19 +37,16 @@ SPDX-License-Identifier: MIT
 
 /* === Macros definitions ====================================================================== */
 
-#ifndef OPERACIONES
-#define OPERACIONES 16
-#endif
-
 /* === Private data type declarations ========================================================== */
 
-typedef struct operacion_s {
+struct operacion_s {
     char operador;
     funciont_t funcion;
-} * operacion_t;
+    operacion_t siguiente;
+};
 
 struct calculadora_s {
-    struct operacion_s operaciones[OPERACIONES];
+    operacion_t operaciones;
 };
 
 /* === Private variable declarations =========================================================== */
@@ -64,13 +61,18 @@ struct calculadora_s {
 
 operacion_t BuscarOperacion(calculadora_t calculadora, char operador) {
     operacion_t op = NULL;
+    if (calculadora != NULL) {
+        operacion_t actual = calculadora->operaciones;
 
-    for (int indice = 0; indice < OPERACIONES; indice++) {
-        if (calculadora->operaciones[indice].operador == operador) {
-            op = &calculadora->operaciones[indice];
-            break;
+        while (actual != NULL) {
+            if (actual->operador == operador) {
+                op = actual;
+                break;
+            }
+            actual = actual->siguiente;
         }
     }
+
     return op;
 }
 
@@ -83,11 +85,13 @@ calculadora_t CrearCalculadora(void) {
 }
 
 bool AgregarOperacion(calculadora_t calculadora, char operador, funciont_t funcion) {
-    operacion_t operacion = BuscarOperacion(calculadora, 0);
+    operacion_t operacion = malloc(sizeof(struct operacion_s));
 
     if ((operacion) && !BuscarOperacion(calculadora, operador)) {
         operacion->operador = operador;
         operacion->funcion = funcion;
+        operacion->siguiente = calculadora->operaciones;
+        calculadora->operaciones = operacion;
     }
     return (operacion != NULL);
 }
