@@ -19,12 +19,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
 
-/** \brief Brief description of the file
+/** \brief Implementacion de libreria calculadora.h
  **
- ** Full file description
- **
- ** \addtogroup name Module denomination
- ** \brief Brief description of the module
+ ** \addtogroup calculadora CALCULADORA
  ** @{ */
 
 /* === Headers files inclusions =============================================================== */
@@ -39,6 +36,7 @@ SPDX-License-Identifier: MIT
 
 /* === Private data type declarations ========================================================== */
 
+//! Estructura que representa una operacion de la calculadora - definicion de atributos
 struct operacion_s {
     char operador;
     funciont_t funcion;

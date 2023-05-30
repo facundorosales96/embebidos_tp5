@@ -19,12 +19,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
 
-/** \brief Brief description of the file
+/** \brief Implementacion de un programa de una Calculadora dinamica
  **
- ** Full file description
+ ** Este archivo contiene la implementacion de una calculadora dinamica,la cual realiza
+ ** operaciones de suma, resta y multiplicacion.
  **
- ** \addtogroup name Module denomination
- ** \brief Brief description of the module
+ ** \addtogroup calculadora CALCULADORA
  ** @{ */
 
 /* === Headers files inclusions =============================================================== */
@@ -40,9 +40,9 @@ SPDX-License-Identifier: MIT
 
 /* === Private function declarations =========================================================== */
 
-int suma(int a, int b);
-int resta(int a, int b);
-int producto(int a, int b);
+int suma(int a, int b);     //! Funcion para la suma
+int resta(int a, int b);    //! Funcion para la resta
+int producto(int a, int b); //! Funcion para la multiplicacion
 
 /* === Public variable definitions ============================================================= */
 
@@ -51,13 +51,36 @@ int producto(int a, int b);
 /* === Private function implementation ========================================================= */
 
 /* === Public function implementation ========================================================== */
+/**
+ * @brief Realiza la suma de dos numeros enteros
+ *
+ * @param a primer entero a sumar
+ * @param b segundo entero a sumar
+ * @return resultado de la suma
+ */
 
 int suma(int a, int b) {
     return (a + b);
 }
+/**
+ * @brief Realiza la resta de dos numeros enteros
+ *
+ * @param a primer numero entero
+ * @param b segundo numero entero
+ * @return resultado de la resta
+ */
+
 int resta(int a, int b) {
     return (a - b);
 }
+/**
+ * @brief Realiza la multiplicacion de dos numeros enteros
+ *
+ * @param a primer numero entero
+ * @param b segundo numero entero
+ * @return resultado de la multiplicacion
+ */
+
 int producto(int a, int b) {
     return (a * b);
 }
@@ -66,7 +89,11 @@ int main(void) {
 
     int resultado;
 
+    //! Crea una instancia de la calculadora
+
     calculadora_t calculadora = CrearCalculadora();
+
+    //! Agrega las operacioes a la calculadora
 
     AgregarOperacion(calculadora, '+', suma);
     AgregarOperacion(calculadora, '-', resta);
